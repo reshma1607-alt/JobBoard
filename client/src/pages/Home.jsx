@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   const jobs = [
     {
       id: 1,
@@ -115,10 +118,9 @@ function Home() {
                     {job.salary}
                   </p>
 
-                  <button className="btn btn-primary w-100">
-                    Apply Now
-                  </button>
-
+                  <Link to="/jobs" className="btn btn-primary w-100">
+  View Jobs
+</Link>
                 </div>
 
               </div>
