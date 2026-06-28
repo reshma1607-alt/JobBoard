@@ -16,7 +16,7 @@ function Jobs() {
     try {
 
       const response = await axios.get(
-        `http://localhost:5000/api/jobs?search=${keyword}`
+        `http://https://jobboard-backend-tktq.onrender.com/api/jobs?search=${keyword}`
       );
 
       setJobs(response.data);

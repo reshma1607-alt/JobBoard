@@ -17,7 +17,7 @@ const [resume, setResume] = useState(null);
   const fetchJob = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/jobs/${id}`
+        `http://https://jobboard-backend-tktq.onrender.com/api/jobs/${id}`
       );
 
       setJob(response.data);
@@ -40,7 +40,7 @@ const [resume, setResume] = useState(null);
     }
 
     const response = await axios.post(
-      "http://localhost:5000/api/applications/apply",
+      "http://https://jobboard-backend-tktq.onrender.com/api/applications/apply",
       formData,
       {
         headers: {
