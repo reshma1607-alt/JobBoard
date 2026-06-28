@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 function Home() {
-  const navigate = useNavigate();
+
   const jobs = [
     {
       id: 1,
@@ -32,11 +32,13 @@ function Home() {
       <section className="bg-primary text-white text-center py-5">
         <div className="container">
           <h1 className="display-4 fw-bold">Find Your Dream Job</h1>
+
           <p className="lead">
             Search thousands of jobs from top companies.
           </p>
 
           <div className="row justify-content-center mt-4">
+
             <div className="col-md-6">
               <input
                 type="text"
@@ -50,13 +52,18 @@ function Home() {
                 Search
               </button>
             </div>
+
           </div>
+
         </div>
       </section>
 
       {/* Categories */}
       <div className="container mt-5">
-        <h2 className="text-center mb-4">Popular Categories</h2>
+
+        <h2 className="text-center mb-4">
+          Popular Categories
+        </h2>
 
         <div className="row text-center">
 
@@ -89,6 +96,7 @@ function Home() {
           </div>
 
         </div>
+
       </div>
 
       {/* Featured Jobs */}
@@ -118,9 +126,13 @@ function Home() {
                     {job.salary}
                   </p>
 
-                  <Link to="/jobs" className="btn btn-primary w-100">
-  View Jobs
-</Link>
+                  <Link
+                    to={`/job/${job.id}`}
+                    className="btn btn-success w-100"
+                  >
+                    Apply Now
+                  </Link>
+
                 </div>
 
               </div>
