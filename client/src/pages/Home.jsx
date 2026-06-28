@@ -1,44 +1,40 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
+  const [jobs, setJobs] = useState([]);
 
-  const jobs = [
-    {
-      id: 1,
-      title: "Software Engineer",
-      company: "Google",
-      location: "Hyderabad",
-      salary: "₹15 LPA",
-    },
-    {
-      id: 2,
-      title: "React Developer",
-      company: "Microsoft",
-      location: "Bangalore",
-      salary: "₹12 LPA",
-    },
-    {
-      id: 3,
-      title: "Data Analyst",
-      company: "Deloitte",
-      location: "Chennai",
-      salary: "₹10 LPA",
-    },
-  ];
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    try {
+      const response = await axios.get(
+        "https://jobboard-backend-tktq.onrender.com/api/jobs"
+      );
+
+      setJobs(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
       {/* Hero Section */}
       <section className="bg-primary text-white text-center py-5">
         <div className="container">
-          <h1 className="display-4 fw-bold">Find Your Dream Job</h1>
+          <h1 className="display-4 fw-bold">
+            Find Your Dream Job
+          </h1>
 
           <p className="lead">
             Search thousands of jobs from top companies.
           </p>
 
           <div className="row justify-content-center mt-4">
-
             <div className="col-md-6">
               <input
                 type="text"
@@ -52,9 +48,7 @@ function Home() {
                 Search
               </button>
             </div>
-
           </div>
-
         </div>
       </section>
 
@@ -108,38 +102,45 @@ function Home() {
 
         <div className="row">
 
-          {jobs.map((job) => (
+          {jobs.length === 0 ? (
+            <div className="text-center">
+              <h5>No Jobs Available</h5>
+            </div>
+          ) : (
+            jobs.map((job) => (
+              <div
+                className="col-md-4 mb-4"
+                key={job._id}
+              >
 
-            <div className="col-md-4 mb-4" key={job.id}>
+                <div className="card shadow h-100">
 
-              <div className="card shadow h-100">
+                  <div className="card-body">
 
-                <div className="card-body">
+                    <h4>{job.title}</h4>
 
-                  <h4>{job.title}</h4>
+                    <h6>{job.company}</h6>
 
-                  <h6>{job.company}</h6>
+                    <p>📍 {job.location}</p>
 
-                  <p>📍 {job.location}</p>
+                    <p className="fw-bold text-success">
+                      {job.salary}
+                    </p>
 
-                  <p className="fw-bold text-success">
-                    {job.salary}
-                  </p>
+                    <Link
+                      to={`/job/${job._id}`}
+                      className="btn btn-success w-100"
+                    >
+                      Apply Now
+                    </Link>
 
-                  <Link
-                    to={`/job/${job.id}`}
-                    className="btn btn-success w-100"
-                  >
-                    Apply Now
-                  </Link>
+                  </div>
 
                 </div>
 
               </div>
-
-            </div>
-
-          ))}
+            ))
+          )}
 
         </div>
 
