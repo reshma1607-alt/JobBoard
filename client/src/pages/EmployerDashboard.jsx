@@ -16,7 +16,7 @@ function EmployerDashboard() {
   const fetchApplications = async () => {
     try {
       const response = await axios.get(
-        "http://https://jobboard-backend-tktq.onrender.com/api/applications"
+        "https://jobboard-backend-tktq.onrender.com/api/applications"
       );
       setApplications(response.data);
     } catch (error) {
@@ -37,7 +37,7 @@ function EmployerDashboard() {
 
     try {
       const response = await axios.post(
-  "http://https://jobboard-backend-tktq.onrender.com/api/jobs/create",
+  "https://jobboard-backend-tktq.onrender.com/api/jobs/create",
   job
 );
 
@@ -165,7 +165,7 @@ console.log("Job:", job);
                 <td>
                   {app.resume ? (
                     <a
-                      href={`http://https://jobboard-backend-tktq.onrender.com/uploads/${app.resume}`}
+                      href={`https://jobboard-backend-tktq.onrender.com/uploads/${app.resume}`}
                       target="_blank"
                       rel="noreferrer"
                       className="btn btn-primary btn-sm"
